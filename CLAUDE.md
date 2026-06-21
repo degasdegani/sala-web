@@ -5,7 +5,7 @@
 > Documento-fonte único do site institucional da **S.A.L.A.**
 > Cole este arquivo no início de cada nova sessão para restaurar contexto.
 > A linha `@AGENTS.md` acima importa as regras de agente do Next (geradas pelo scaffold).
-> Atualizado ao final de cada fase. Versão: **0.2 (Fase 0 em andamento)**.
+> Atualizado ao final de cada fase. Versão: **1.0 (Fase 1 concluída)**.
 
 ---
 
@@ -76,7 +76,7 @@ Assets a produzir (em `public/brand/`):
 
 > **STATUS (Fase 0.8):** a recriação em SVG nativo foi **abandonada por ora** — duas tentativas perderam a fidelidade. Em uso: **raster de alta-res** `public/brand/symbol.png` (534×467, transparente) + favicon `src/app/icon.png`. Asset-fonte limpo: `reference/symbol-reference.png`.
 >
-> **Geometria real do símbolo** (corrigida olhando o asset, para a vetorização da Fase 1): "S" **anguloso de 7 segmentos** (estilo display "5"/"S"), **não** fita curva. Barra-topo **azul** (gradiente ciano→azul) e barra-base **azul**; corpo do meio **branco/metálico** (gradiente vertical). **Círculo verde-água sólido** encostado na ponta inferior-direita da base, + um pequeno *sparkle*. Pontas chanfradas (paralelogramo).
+> **Geometria real do símbolo** (corrigida olhando o asset, para a vetorização da Fase 2 — Home): "S" **anguloso de 7 segmentos** (estilo display "5"/"S"), **não** fita curva. Barra-topo **azul** (gradiente ciano→azul) e barra-base **azul**; corpo do meio **branco/metálico** (gradiente vertical). **Círculo verde-água sólido** encostado na ponta inferior-direita da base, + um pequeno *sparkle*. Pontas chanfradas (paralelogramo).
 
 ---
 
@@ -225,7 +225,7 @@ Fim de fase: atualizar este `CLAUDE.md` com o que foi construído.
 | Fase | Nome | Entregável | Status |
 |------|------|-----------|--------|
 | **0** | **Setup** | scaffold, deps, Satoshi, Tailwind v3 + tokens, layout raiz, 5 rotas, Lenis, logo (raster provisório). | ✅ concluída |
-| **1** | **Cena base** | `<Canvas>` persistente no layout, Zustand store, Fita-S central, partículas, dpr adaptativo, fallback WebGL/reduced-motion. | — |
+| **1** | **Cena base** | `<Canvas>` persistente no layout, Zustand store, objeto central (placeholder), partículas, dpr adaptativo, bloom contido, fallback WebGL/reduced-motion. | ✅ concluída |
 | **2** | **Home** | Hero (Fita-S + grafo), headline, CTA, 4 cards-portal funcionais. | — |
 | **3** | **Transições de rota** | CameraRig: voo de câmera + morph por rota, coordenado GSAP↔R3F↔DOM. PageTransition + loader com símbolo da marca. | — |
 | **4** | **Sites & Landing Pages** | Conteúdo, processo, showcase LIVO em frame 3D. | — |
@@ -245,6 +245,17 @@ Fim de fase: atualizar este `CLAUDE.md` com o que foi construído.
 | 0.6 | Rotas placeholder (`/sites`, `/automacao`, `/sobre`, `/contato`, `not-found`) | ✅ feito |
 | 0.7 | Lenis smooth scroll (ReactLenis root) | ✅ feito |
 | 0.8 | Logo **raster provisório** (`public/brand/symbol.png` + favicon `src/app/icon.png`) — vetor de alta-fidelidade adiado p/ Fase 1 | ✅ feito |
+
+### Sub-etapas da Fase 1
+| # | Etapa | Status |
+|---|-------|--------|
+| 1.1 | Hooks de capacidade (`useMediaQuery`, `useReducedMotion`, `useWebGLSupport` tri-state) | ✅ feito |
+| 1.2 | Zustand store (`useSceneStore`: rota, fase, quality, reducedMotion) | ✅ feito |
+| 1.3 | Canvas raiz (`Scene.tsx`): dpr adaptativo, PerformanceMonitor, Suspense, fallback WebGL 2D + `tokens.ts` | ✅ feito |
+| 1.4 | `Experience.tsx`: void + fog + rig de luz néon + vinheta DOM | ✅ feito |
+| 1.5 | `CentralObject` (rotação + parallax) + `Particles` (quality-driven) + Bloom contido | ✅ feito |
+| 1.6 | `<Scene />` persistente montado no `layout.tsx` (atrás do DOM) | ✅ feito |
+| 1.7 | Validação: build + dev + check visual (canvas persistente, parallax, bloom, fallback) | ✅ feito |
 
 ---
 
@@ -271,3 +282,13 @@ Fim de fase: atualizar este `CLAUDE.md` com o que foi construído.
 - **Fase 0.2–0.7 (feito):** deps 3D/anim instaladas (R3F v9.6, drei v10.7, three 0.184, gsap 3.15, zustand 5, lenis 1.3, framer-motion 12.40, resend 6.14). Satoshi Variable self-host. Tailwind v3.4 + tokens (CSS vars) + `globals.css`. Layout raiz pt-BR com Header/Footer. 5 rotas + `not-found` (placeholders via `RoutePlaceholder`). Lenis via `<ReactLenis root>`. Build + dev validados. **Commit `4f75300` + push p/ `origin/main`.**
 - **Fase 0.8 — Logo (feito):** símbolo recriado em SVG **abandonado** (2 tentativas perderam fidelidade do gradiente/acabamento/proporção). Adotado **asset raster de alta-res** fornecido pelo Edu: `public/brand/symbol.png` (534×467 RGBA transparente). Header usa `symbol.png` via `next/image`. Favicon `src/app/icon.png` (512², símbolo sobre quadrado preto arredondado, gerado com sharp). Limpeza: removidos SVGs default do scaffold e `favicon.ico`. **Pendência p/ Fase 1:** vetorização de alta-fidelidade do símbolo (necessária p/ morph/animação na cena 3D da Home).
 - **FASE 0 CONCLUÍDA.**
+- **Fase 1 — Cena base (feito):**
+  - **1.1 Hooks de capacidade:** `useMediaQuery` (SSR-safe, base dos demais), `useReducedMotion`, `useWebGLSupport` **tri-state** (`null` = indeterminado p/ evitar flash de fallback; `true`/`false` após mount).
+  - **1.2 Store Zustand** (`useSceneStore`): estado **discreto** apenas — `activeRoute`, `phase` (`loading`/`ready`), `quality` (`high`/`low`), `reducedMotion`. Decisão: pointer/parallax e câmera por-frame **fora** do store (vivem em ref no `useFrame`) p/ não disparar re-render. Alvo de câmera por rota deixado p/ Fase 3 (CameraRig).
+  - **1.3 Canvas raiz** (`src/three/Scene.tsx`): `<Canvas>` client, `dpr={[1,2]}` adaptativo + `PerformanceMonitor` (`onDecline`→`setQuality('low')`). **Sem `next/dynamic ssr:false`**: o tri-state `null` não monta o Canvas no servidor/1º render → evita SSR de WebGL e flash. Fallback 2D (`SceneFallback`) p/ `webgl===false`. Bridge DOM→store de reduced-motion. Espelho TS de tokens em `src/styles/tokens.ts` (three.js não lê CSS vars; valores idênticos ao `globals.css`).
+  - **1.4 `Experience.tsx`:** background void (preto puro) + `fog` sutil + rig de luz "néon contido" (ambient baixa + 2 point lights azul/verde-água, posicionados p/ rim do objeto metálico real). Vinheta como **overlay DOM** (`color-mix` sobre CSS var), não pós-processamento. `<Environment>` PBR adiado p/ quando houver metal real.
+  - **1.5 Objeto central + partículas + bloom:** `usePointer` (cursor normalizado em **ref**, listener global em `window` pois o canvas é `pointer-events:none`). `CentralObject` placeholder (icosaedro wireframe metálico): rotação contínua + parallax com `MathUtils.damp`, **congela em reduced-motion**. `Particles`: contagem dirigida por `quality` (1200/400) com `geometry.dispose()` ao trocar nível (sem leak), drift congelável. Instaladas `@react-three/postprocessing@3.0.4` + `postprocessing@6.39.1`; `<Bloom>` **contido** (threshold/intensidade baixos), montado **só em `quality:'high'`** (pula o passe full-screen em `low`).
+  - **1.6 Montagem persistente:** `<Scene />` montado uma única vez no `layout.tsx`, fixo `-z-10` atrás do DOM. Seções são transparentes → o void/3D aparece atrás do conteúdo.
+  - **1.7 Validação:** `tsc`/`eslint` limpos em todas as etapas; `next build` produção exit 0 (9 páginas, sem erro de SSR); `dev` HTTP 200. **Check visual confirmado pelo Edu:** void + objeto girando, parallax, bloom, vinheta, partículas, e **navegação entre rotas sem recarregar/piscar a cena** (canvas persistente OK).
+  - **Pendência herdada → reescopada:** a vetorização de alta-fidelidade do símbolo / Fita-S definitiva (geometria angulosa de 7 segmentos) foi **movida para a Fase 2 (Home)**; na Fase 1 o objeto central é placeholder por decisão de recorte (foco em infra).
+- **FASE 1 CONCLUÍDA.**

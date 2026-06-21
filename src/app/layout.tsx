@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { Scene } from "@/three/Scene";
 
 export const metadata: Metadata = {
   // TODO: trocar pelo domínio real quando definido.
@@ -32,7 +33,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className="flex min-h-screen flex-col font-sans antialiased">
-        {/* Fase 1: <Scene /> (Canvas 3D persistente) será montado aqui, atrás do conteúdo */}
+        {/* Cena 3D persistente: montada uma única vez, fixa atrás do conteúdo (-z-10). */}
+        <Scene />
         <SmoothScroll>
           <Header />
           <main className="flex-1">{children}</main>
