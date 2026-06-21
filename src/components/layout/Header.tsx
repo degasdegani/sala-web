@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -16,13 +17,16 @@ export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto flex max-w-container items-center justify-between px-6 py-5">
-        {/* Placeholder textual — logo SVG nativo entra na Fase 0.8 */}
-        <Link
-          href="/"
-          className="text-xl font-black tracking-tight text-white-pure"
-          aria-label="S.A.L.A — início"
-        >
-          S.A.L.A
+        {/* Símbolo raster (alta-res). Vetor de alta-fidelidade chega na Fase 1. */}
+        <Link href="/" aria-label="S.A.L.A — início" className="inline-flex">
+          <Image
+            src="/brand/symbol.png"
+            alt="S.A.L.A"
+            width={534}
+            height={467}
+            priority
+            className="h-8 w-auto"
+          />
         </Link>
 
         <nav className="flex items-center gap-6">

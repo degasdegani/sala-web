@@ -21,9 +21,7 @@ export const metadata: Metadata = {
     description:
       "Sites, Agendamentos, Landing Pages e Automação, construídos com padrão de produto.",
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
+  // Favicon detectado automaticamente a partir de src/app/icon.png
 };
 
 export default function RootLayout({

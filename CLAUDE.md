@@ -74,6 +74,10 @@ Assets a produzir (em `public/brand/`):
 
 > A tagline `SITES · AGENDAMENTOS · LANDING PAGES · AUTOMAÇÃO` e o rodapé explicativo da referência **não** integram o lockup final — são material de apoio da imagem-fonte.
 
+> **STATUS (Fase 0.8):** a recriação em SVG nativo foi **abandonada por ora** — duas tentativas perderam a fidelidade. Em uso: **raster de alta-res** `public/brand/symbol.png` (534×467, transparente) + favicon `src/app/icon.png`. Asset-fonte limpo: `reference/symbol-reference.png`.
+>
+> **Geometria real do símbolo** (corrigida olhando o asset, para a vetorização da Fase 1): "S" **anguloso de 7 segmentos** (estilo display "5"/"S"), **não** fita curva. Barra-topo **azul** (gradiente ciano→azul) e barra-base **azul**; corpo do meio **branco/metálico** (gradiente vertical). **Círculo verde-água sólido** encostado na ponta inferior-direita da base, + um pequeno *sparkle*. Pontas chanfradas (paralelogramo).
+
 ---
 
 ## 2. DESIGN TOKENS
@@ -220,7 +224,7 @@ Fim de fase: atualizar este `CLAUDE.md` com o que foi construído.
 
 | Fase | Nome | Entregável | Status |
 |------|------|-----------|--------|
-| **0** | **Setup** | scaffold, deps, Satoshi, Tailwind v3 + tokens, layout raiz, 5 rotas, Lenis, logo SVG. | 🔄 em andamento |
+| **0** | **Setup** | scaffold, deps, Satoshi, Tailwind v3 + tokens, layout raiz, 5 rotas, Lenis, logo (raster provisório). | ✅ concluída |
 | **1** | **Cena base** | `<Canvas>` persistente no layout, Zustand store, Fita-S central, partículas, dpr adaptativo, fallback WebGL/reduced-motion. | — |
 | **2** | **Home** | Hero (Fita-S + grafo), headline, CTA, 4 cards-portal funcionais. | — |
 | **3** | **Transições de rota** | CameraRig: voo de câmera + morph por rota, coordenado GSAP↔R3F↔DOM. PageTransition + loader com símbolo da marca. | — |
@@ -233,14 +237,14 @@ Fim de fase: atualizar este `CLAUDE.md` com o que foi construído.
 ### Sub-etapas da Fase 0
 | # | Etapa | Status |
 |---|-------|--------|
-| 0.1 | Scaffold Next (Next 16 + TS + App Router + src/ + ESLint + alias, sem Tailwind, sem Turbopack) | ✅ feito |
-| 0.2 | Deps 3D/anim (R3F, drei, three, gsap, zustand, lenis, motion, resend) | ⏳ |
-| 0.3 | Satoshi self-host (`public/fonts/`) | ⏳ |
-| 0.4 | Tailwind v3 + tokens (`tailwind.config.ts`, `postcss.config`, `globals.css`) | ⏳ |
-| 0.5 | Layout raiz (metadata, fonte, Header/Footer placeholders) | ⏳ |
-| 0.6 | Rotas placeholder (`/sites`, `/automacao`, `/sobre`, `/contato`, `not-found`) | ⏳ |
-| 0.7 | Lenis smooth scroll | ⏳ |
-| 0.8 | Logo SVG nativo (`public/brand/`) | ⏳ |
+| 0.1 | Scaffold Next (downgrade p/ **Next 15** + TS + App Router + src/ + ESLint + alias, sem Tailwind, sem Turbopack) | ✅ feito |
+| 0.2 | Deps 3D/anim (R3F v9, drei v10, three, gsap, zustand, lenis, framer-motion, resend) | ✅ feito |
+| 0.3 | Satoshi Variable self-host (`public/fonts/Satoshi-Variable.woff2`) | ✅ feito |
+| 0.4 | Tailwind v3 + tokens (`tailwind.config.ts`, `postcss.config.mjs`, `globals.css`) | ✅ feito |
+| 0.5 | Layout raiz (metadata pt-BR, Header/Footer placeholders) | ✅ feito |
+| 0.6 | Rotas placeholder (`/sites`, `/automacao`, `/sobre`, `/contato`, `not-found`) | ✅ feito |
+| 0.7 | Lenis smooth scroll (ReactLenis root) | ✅ feito |
+| 0.8 | Logo **raster provisório** (`public/brand/symbol.png` + favicon `src/app/icon.png`) — vetor de alta-fidelidade adiado p/ Fase 1 | ✅ feito |
 
 ---
 
@@ -254,7 +258,7 @@ Fim de fase: atualizar este `CLAUDE.md` com o que foi construído.
 - **Mobile não é afterthought:** versão deliberadamente mais leve da cena (menos partículas, geometria simplificada, possível substituição por mídia otimizada via feature-detection).
 - **Acessibilidade:** `prefers-reduced-motion` substitui movimento 3D por equivalente 2D — **nunca remove a experiência por completo**.
 - **GSAP:** plugins registrados uma vez em `lib/gsap.ts`; timelines limpas no unmount.
-- **Next 16:** consultar `node_modules/next/dist/docs/` antes de usar APIs do framework (APIs podem divergir do conhecimento do modelo).
+- **Next 15:** App Router; em dúvida sobre APIs do framework, conferir `node_modules/next/dist/docs/`.
 - **Comandos de terminal sempre explícitos e completos** (paths e flags), prontos para copiar/colar.
 - **Commits:** mensagens claras; só commitar/pushar quando o Edu pedir.
 - **Segredos** só em `.env.local` (gitignored); `.env.example` documenta as chaves.
@@ -263,4 +267,7 @@ Fim de fase: atualizar este `CLAUDE.md` com o que foi construído.
 
 ## 8. LOG DE FASES (preencher ao final de cada fase)
 
-- **Fase 0.1 — Scaffold (feito):** `create-next-app@latest` gerou Next 16.2.9 + React 19.2.4 + TS + App Router + `src/` + ESLint 9 + alias `@/*`, sem Tailwind, sem Turbopack. Scaffold feito em pasta temp (restrição de nome npm com maiúsculas/pontos) e copiado via `cp -a` para `C:\S.A.L.A`. `package.json name` ajustado para `sala-web`. O CNA gerou `AGENTS.md` (regras Next) + `CLAUDE.md`→`@AGENTS.md`; spec mestra restaurada no `CLAUDE.md` com `@AGENTS.md` no topo.
+- **Fase 0.1 — Scaffold (feito):** `create-next-app@latest` gerou Next 16.2.9 + React 19.2.4; **downgrade para `next@15.5.19` + `eslint-config-next@15.5.19`** (React 19 mantido), `eslint.config.mjs` migrado p/ FlatCompat. Scaffold feito em pasta temp (restrição de nome npm) e copiado via `cp -a`. `package.json name` → `sala-web`. CNA gerou `AGENTS.md` + `CLAUDE.md`→`@AGENTS.md`; spec mestra restaurada no `CLAUDE.md` com `@AGENTS.md` no topo.
+- **Fase 0.2–0.7 (feito):** deps 3D/anim instaladas (R3F v9.6, drei v10.7, three 0.184, gsap 3.15, zustand 5, lenis 1.3, framer-motion 12.40, resend 6.14). Satoshi Variable self-host. Tailwind v3.4 + tokens (CSS vars) + `globals.css`. Layout raiz pt-BR com Header/Footer. 5 rotas + `not-found` (placeholders via `RoutePlaceholder`). Lenis via `<ReactLenis root>`. Build + dev validados. **Commit `4f75300` + push p/ `origin/main`.**
+- **Fase 0.8 — Logo (feito):** símbolo recriado em SVG **abandonado** (2 tentativas perderam fidelidade do gradiente/acabamento/proporção). Adotado **asset raster de alta-res** fornecido pelo Edu: `public/brand/symbol.png` (534×467 RGBA transparente). Header usa `symbol.png` via `next/image`. Favicon `src/app/icon.png` (512², símbolo sobre quadrado preto arredondado, gerado com sharp). Limpeza: removidos SVGs default do scaffold e `favicon.ico`. **Pendência p/ Fase 1:** vetorização de alta-fidelidade do símbolo (necessária p/ morph/animação na cena 3D da Home).
+- **FASE 0 CONCLUÍDA.**
