@@ -1,6 +1,7 @@
 /* ============================================================
    S.A.L.A. — globals.css
-   Fonte self-host, design tokens (CSS vars) e base layer.
+   Tema CLARO (institucional, estilo Stripe). Satoshi self-host,
+   design tokens (CSS vars) e base layer.
    ============================================================ */
 
 /* ---- Satoshi (variable, self-host) ---- */
@@ -16,20 +17,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ---- Design tokens (hex exatos — seção 2.1 da spec) ---- */
+/* ---- Design tokens ---- */
 :root {
-  --color-black-pure: #000000; /* fundo base — predominante */
-  --color-black-soft: #0a0a0a; /* cards / seções elevadas */
-  --color-black-elevated: #111111; /* elementos interativos em repouso */
+  /* Marca (acentos) */
+  --color-blue-electric: #00a3ff; /* primária: ação, links */
+  --color-green-mint: #00ffb2; /* secundária: sucesso, destaques */
 
-  --color-white-pure: #ffffff; /* texto principal, headlines */
-  --color-gray-light: #e5e3e5; /* texto secundário */
-  --color-gray-mid: #b3b3b3; /* texto terciário, captions, labels */
-
-  --color-blue-electric: #00a3ff; /* primária: ação, Sites, Agendamentos */
-  --color-green-mint: #00ffb2; /* secundária: Automação, Landing Pages, sucesso */
-
-  --border-subtle: rgba(255, 255, 255, 0.08); /* borda 1px de cards */
+  /* Neutros — tema claro */
+  --color-bg: #f9fafb; /* fundo da página */
+  --color-surface: #ffffff; /* cards / superfícies elevadas */
+  --color-ink: #0a2540; /* headings / texto forte */
+  --color-body: #425466; /* corpo */
+  --color-muted: #697386; /* terciário, labels, captions */
+  --color-border: #e6e9ee; /* bordas 1px */
 }
 
 /* ---- Base layer ---- */
@@ -40,12 +40,12 @@
 
   html {
     -webkit-text-size-adjust: 100%;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* âncoras suaves (scroll único) */
   }
 
   body {
-    background-color: var(--color-black-pure);
-    color: var(--color-white-pure);
+    background-color: var(--color-bg);
+    color: var(--color-body);
     font-family: "Satoshi", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -54,7 +54,7 @@
 
   ::selection {
     background: var(--color-blue-electric);
-    color: var(--color-black-pure);
+    color: #ffffff;
   }
 
   a {

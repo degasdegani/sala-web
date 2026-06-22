@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { SmoothScroll } from "@/components/layout/SmoothScroll";
-import { Scene } from "@/three/Scene";
 
 export const metadata: Metadata = {
   // TODO: trocar pelo domínio real quando definido.
@@ -13,7 +11,7 @@ export const metadata: Metadata = {
     template: "%s · S.A.L.A",
   },
   description:
-    "S.A.L.A é o estúdio brasileiro por trás de Sites, Agendamentos, Landing Pages e Automação — experiências digitais construídas com padrão de produto.",
+    "S.A.L.A é o estúdio brasileiro por trás de Sites, Agendamentos, Landing Pages e Automação — soluções digitais construídas com padrão de produto.",
   openGraph: {
     type: "website",
     locale: "pt_BR",
@@ -33,13 +31,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className="flex min-h-screen flex-col font-sans antialiased">
-        {/* Cena 3D persistente: montada uma única vez, fixa atrás do conteúdo (-z-10). */}
-        <Scene />
-        <SmoothScroll>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );
