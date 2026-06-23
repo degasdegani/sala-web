@@ -3,11 +3,12 @@ import { Solucoes } from "@/components/sections/Solucoes";
 import { Mercado } from "@/components/sections/Mercado";
 import { Transformacao } from "@/components/sections/Transformacao";
 import { Sobre } from "@/components/sections/Sobre";
+import { Precos } from "@/components/sections/Precos";
 
 /**
  * Home (scroll único). As seções institucionais são montadas aqui na ordem das
- * Etapas B–G. Por ora: Hero (B) + Soluções (C) + Mercado (D) + Transformação
- * (E) + Sobre (F). Preços entra em seguida, com âncora.
+ * Etapas B–G: Hero (B) + Soluções (C) + Mercado (D) + Transformação (E) +
+ * Sobre (F) + Preços (G).
  */
 export default function HomePage() {
   return (
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Mercado />
       <Transformacao />
       <Sobre />
+      <Precos />
     </>
   );
 }
