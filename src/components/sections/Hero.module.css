@@ -1,0 +1,125 @@
+/* Hero — mesh gradient animado (Etapa B v2). Múltiplos blobs saturados (azul
+   #0055FF + roxo #8B00FF + a mistura) que se interpolam e derivam
+   lentamente, formando uma "malha" de cor. Uma máscara concentra a cor à
+   DIREITA e a dissolve à ESQUERDA, onde fica o texto sobre o claro #F9FAFB.
+   Congela em prefers-reduced-motion. */
+
+.mesh {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Concentra à direita; some à esquerda (área do texto fica limpa). */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 5%,
+    rgba(0, 0, 0, 0.35) 34%,
+    #000 60%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 5%,
+    rgba(0, 0, 0, 0.35) 34%,
+    #000 60%
+  );
+}
+
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(64px);
+  will-change: transform;
+}
+
+.b1 {
+  width: 42rem;
+  height: 42rem;
+  right: -4rem;
+  top: -10rem;
+  opacity: 0.8;
+  background: radial-gradient(circle at center, var(--color-blue-electric), transparent 68%);
+  animation: m1 22s ease-in-out infinite;
+}
+
+.b2 {
+  width: 36rem;
+  height: 36rem;
+  right: 7rem;
+  bottom: -12rem;
+  opacity: 0.75;
+  background: radial-gradient(circle at center, var(--color-green-mint), transparent 68%);
+  animation: m2 27s ease-in-out infinite;
+}
+
+.b3 {
+  width: 32rem;
+  height: 32rem;
+  right: 17rem;
+  top: 12%;
+  opacity: 0.6;
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--color-blue-electric) 55%, var(--color-green-mint)),
+    transparent 70%
+  );
+  animation: m3 31s ease-in-out infinite;
+}
+
+.b4 {
+  width: 24rem;
+  height: 24rem;
+  right: 0;
+  top: 42%;
+  opacity: 0.55;
+  background: radial-gradient(circle at center, var(--color-blue-electric), transparent 72%);
+  animation: m4 24s ease-in-out infinite;
+}
+
+@keyframes m1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-4rem, 5rem) scale(1.12);
+  }
+}
+
+@keyframes m2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-6rem, -4rem) scale(1.15);
+  }
+}
+
+@keyframes m3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(4rem, 4rem) scale(1.2);
+  }
+}
+
+@keyframes m4 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-3rem, -5rem) scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b1,
+  .b2,
+  .b3,
+  .b4 {
+    animation: none;
+  }
+}

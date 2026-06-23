@@ -10,6 +10,8 @@ const config: Config = {
         // do Tailwind continuam funcionando.
         "blue-electric": "var(--color-blue-electric)",
         "green-mint": "var(--color-green-mint)",
+        "neon-cyan": "var(--color-neon-cyan)",
+        "neon-magenta": "var(--color-neon-magenta)",
         bg: "var(--color-bg)",
         surface: "var(--color-surface)",
         ink: "var(--color-ink)",

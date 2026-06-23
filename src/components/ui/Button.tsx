@@ -10,9 +10,11 @@ import type { ReactNode } from "react";
  * Renderiza `next/link` com `href` (navegação) ou `<button>` nativo (formulários).
  */
 type Variant = "primary" | "outline";
+type Size = "sm" | "md";
 
 interface ButtonProps {
   variant?: Variant;
+  size?: Size;
   className?: string;
   children: ReactNode;
   href?: string;
@@ -23,7 +25,12 @@ interface ButtonProps {
 }
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+
+const sizes: Record<Size, string> = {
+  sm: "px-4 py-2 text-sm",
+  md: "px-6 py-3 text-sm",
+};
 
 const variants: Record<Variant, string> = {
   primary:
@@ -34,6 +41,7 @@ const variants: Record<Variant, string> = {
 
 export function Button({
   variant = "primary",
+  size = "md",
   className = "",
   children,
   href,
@@ -42,7 +50,9 @@ export function Button({
   disabled,
   "aria-label": ariaLabel,
 }: ButtonProps) {
-  const classes = [base, variants[variant], className].filter(Boolean).join(" ");
+  const classes = [base, sizes[size], variants[variant], className]
+    .filter(Boolean)
+    .join(" ");
 
   if (href) {
     return (

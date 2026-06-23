@@ -20,8 +20,10 @@
 /* ---- Design tokens ---- */
 :root {
   /* Marca (acentos) */
-  --color-blue-electric: #00a3ff; /* primária: ação, links */
-  --color-green-mint: #00ffb2; /* secundária: sucesso, destaques */
+  --color-blue-electric: #0055ff; /* primária: ação, links */
+  --color-green-mint: #8b00ff; /* secundária: roxo, destaques */
+  --color-neon-cyan: #00ccff; /* aresta neon do topo do S */
+  --color-neon-magenta: #cc00ff; /* aresta neon da base do S */
 
   /* Neutros — tema claro */
   --color-bg: #f9fafb; /* fundo da página */
