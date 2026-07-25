@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center">S.A.L.A Tecnologia</h1>
 
-## Getting Started
+<p align="center">
+  <strong>Website institucional</strong><br>
+  Apresentação da empresa, dos produtos do ecossistema LIVO e captação de contato.
+</p>
 
-First, run the development server:
+<p align="center">
+<p align="center">
+  <a href="https://sala-web.vercel.app"><strong>Ver em produção →</strong></a>
+</p>
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-App_Router-000000?logo=nextdotjs&logoColor=white">
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white">
+  <img alt="Tailwind" src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwindcss&logoColor=white">
+  <img alt="Vercel" src="https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white">
+</p>
+
+---
+
+## Sobre
+
+Site institucional da S.A.L.A Tecnologia, empresa responsável pelo ecossistema LIVO — plataformas SaaS de gestão para negócios de serviço.
+
+O site apresenta a empresa, os produtos e converte visitante em contato. Foi construído do zero, sem construtor visual, o que permitiu controle direto sobre performance, semântica e SEO técnico — três coisas que ficam fora do alcance quando o HTML é gerado por uma ferramenta.
+
+## Objetivos do projeto
+
+1. **Carregamento rápido** — página institucional lenta perde o visitante antes de comunicar qualquer coisa
+2. **SEO técnico** — ser encontrável por quem procura o produto sem conhecer a marca
+3. **Identidade visual consistente** — o site é o primeiro contato com a marca dos produtos LIVO
+
+---
+
+## Decisões técnicas
+
+### Conteúdo estático servido pela borda
+
+As páginas institucionais não mudam entre requisições. Servi-las como HTML já pronto elimina processamento no servidor e entrega o conteúdo direto do ponto de distribuição mais próximo do visitante.
+
+O efeito aparece no tempo até o primeiro conteúdo visível — a métrica que mais influencia abandono em site de apresentação, onde o visitante decide em poucos segundos se fica.
+
+### SEO como parte da implementação, não como ajuste final
+
+Metadados por página, tags Open Graph, hierarquia semântica de cabeçalhos e URLs legíveis foram tratados junto com cada página, e não numa passada no fim do projeto.
+
+A diferença não é de esforço, é de resultado: SEO adicionado depois costuma esbarrar em estrutura de HTML construída sem pensar nisso, e a correção vira refatoração.
+
+### Componentização por seção
+
+Hero, cards de produto, chamada para ação e bloco de contato foram construídos como componentes parametrizados. Montar uma nova página de campanha passa a ser combinar seções existentes, em vez de duplicar layout — o que evita a divergência visual que aparece quando cada página é escrita do zero.
+
+### Otimização de imagem e fonte
+
+Imagens servidas em formato moderno com dimensionamento responsivo, e fontes carregadas com estratégia que evita deslocamento de layout durante o carregamento — aquele salto de conteúdo que acontece quando a fonte definitiva substitui a de fallback.
+
+---
+
+## Performance
+
+Resultados do Lighthouse na versão de produção:
+
+| Métrica        | Resultado |
+| -------------- | --------- |
+| Performance    | [88]      |
+| Acessibilidade | [100]     |
+| Boas práticas  | [100]     |
+| SEO            | [100]     |
+
+> Medido com Lighthouse em modo mobile, que simula rede e processador limitados.
+
+---
+
+## Stack
+
+| Camada        | Tecnologias                             |
+| ------------- | --------------------------------------- |
+| **Framework** | Next.js (App Router), React, TypeScript |
+| **Estilo**    | Tailwind CSS                            |
+| **Animação**  | GSAP                                    |
+| **Deploy**    | Vercel                                  |
+
+---
+
+## Rodando localmente
 
 ```bash
+git clone https://github.com/degasdegani/sala-web.git
+cd sala-web
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Aplicação disponível em `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Autor
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Eduardo Degani** — Desenvolvedor Full Stack
+[LinkedIn](https://linkedin.com/in/eduardo-degani) · [GitHub](https://github.com/degasdegani) · contatodegani@gmail.com
